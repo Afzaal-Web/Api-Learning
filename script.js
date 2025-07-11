@@ -25,17 +25,16 @@ btn.addEventListener('click', () => {
 });
 
 const showCountries = (data) => {
-    data.forEach((name, index) => {
-        if(`${data[index].region}` === 'Asia'){
+    data.forEach((country) => {
+        if(country.region === 'Asia'){
   countries.innerHTML += `
         <div class="country-card">
- <img src="${data[index].flags.png}" alt="Flag Image" width="300">
-    <h2>${data[index].name.common}</h2>
-    <h3>${data[index].region}</h3>
-    <p>${data[index].population}</p>
+ <img src="${country.flags.png}" alt="${country.flags.alt}" width="300">
+    <h2>${country.name.common}</h2>
+    <h3>${country.region}</h3>
+    <p>${country.population}</p>
     </div>
-`
-        }
+`}
       
     })
 }
