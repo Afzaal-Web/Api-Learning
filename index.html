@@ -9,13 +9,47 @@
 </head>
 
 <body>
-   <button id="loadCountries">Load Countries</button>
-<div id="countries-container">
+ <div class="theme-toggle">
+  <label class="switch">
+    <input type="checkbox" id="themeswitch">
+    <span class="slider"></span>
+  </label>
+  <span class="toggle-label">Dark Mode</span>
 </div>
 
 
 
-    <script src="script.js"></script>
+  <div class="controls">
+    <select id="regionFilter">
+      <option value="Show All" selected>Show All</option>
+      <option value="Asia">Asia</option>
+      <option value="Americas">Americas</option>
+      <option value="Europe">Europe</option>
+      <option value="Oceania">Oceania</option>
+      <option value="Antarctic">Antarctic</option>
+      <option value="Africa">Africa</option>
+    </select>
+
+    <select id="sort">
+      <option selected>Sort by Population</option>
+      <option value="High to Low">High to Low</option>
+      <option value="Low to High">Low to High</option>
+    </select>
+
+    <input type="text" id="search-country" placeholder="Search countries...">
+  </div>
+
+  <div class="totalCountries">
+    <p id="totalCountries"></p>
+  </div>
+
+  <div id="countries-container"></div>
+    <div class="center">
+    <button class="btn" id="load-more-btn">Load More Countries</button>
+</div>
+
+  <script src="load more.js"></script>
 </body>
+
 
 </html>

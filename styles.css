@@ -1,4 +1,4 @@
-/* General Reset and Styling */
+/* Reset & Base Styles */
 * {
   margin: 0;
   padding: 0;
@@ -7,73 +7,249 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0f2f5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
+  background: #f0f2f5;
+  color: #333;
+  padding: 20px;
 }
 
-/* Button Styling */
-#loadCountries {
-  padding: 12px 24px;
-  font-size: 16px;
-  background-color: #0077cc;
-  color: #fff;
-  border: none;
+h2,
+h3 {
+  margin: 10px 0 5px;
+}
+
+select,
+input[type="text"] {
+  padding: 10px;
+  margin: 10px;
   border-radius: 8px;
-  cursor: pointer;
-  margin-bottom: 30px;
-  transition: background-color 0.3s;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  min-width: 180px;
 }
 
-#loadCountries:hover {
-  background-color: #005fa3;
+input[type="text"] {
+  flex: 1;
 }
 
-/* Country Card Styling */
-#countries-container {
+.totalCountries {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.1rem;
+  color: #555;
+  font-weight: bold;
+}
+
+/* Layout */
+.controls {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-wrap: nowrap;
   justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
-/* Card styling */
+#countries-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  justify-content: start;
+  /* Align cards to left when fewer than available space */
+  gap: 20px;
+  padding: 10px;
+}
+
+
+/* Card */
 .country-card {
-  width: 300px;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.3s;
-  text-align: left;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .country-card:hover {
   transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .country-card img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-.country-card h2 {
-  font-size: 1.4rem;
-  margin: 16px;
-  color: #222;
+/* Toggle Switch Styles */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px;
+  justify-content: flex-end;
+
 }
 
-.country-card h3 {
-  font-size: 1.1rem;
-  margin: 0 16px;
-  color: #555;
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
 }
 
-.country-card p {
-  font-size: 1rem;
-  margin: 8px 16px 16px;
-  color: #444;
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background-color 0.3s;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+/* Checked styles */
+.switch input:checked+.slider {
+  background-color: #2196F3;
+}
+
+.switch input:checked+.slider::before {
+  transform: translateX(22px);
+}
+
+/* Optional: label color change in dark mode */
+body.dark .toggle-label {
+  color: #e0e0e0;
+}
+
+/* Dark Mode Theme */
+body.dark {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+}
+
+/* Form Elements in Dark Mode */
+body.dark select,
+body.dark input[type="text"] {
+  background-color: #2e2e2e;
+  color: #ffffff;
+  border: 1px solid #444;
+}
+
+/* Card Styling in Dark Mode */
+body.dark .country-card {
+  background-color: #2a2a2a;
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+body.dark .country-card:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Dropdown and Input Focus */
+body.dark select:focus,
+body.dark input[type="text"]:focus {
+  border-color: #2196F3;
+  outline: none;
+}
+
+/* Total Countries Text */
+body.dark .totalCountries {
+  color: #ccc;
+}
+
+/* Toggle Label */
+body.dark .toggle-label {
+  color: #ddd;
+}
+
+/* Scrollbar (Optional for extra polish) */
+body.dark ::-webkit-scrollbar {
+  width: 8px;
+}
+
+body.dark ::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+body.dark ::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+
+.pagination button {
+  padding: 6px 12px;
+  margin: 0 2px;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #333;
+  color: white;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.center {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.btn {
+  cursor: pointer;
+  width: 200px;
+  margin: 10px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+  background: linear-gradient(135deg, #ff416c, #ff4b2b);
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 8px 16px rgba(255, 65, 108, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(255, 65, 108, 0.4);
+}
+/* Responsive Enhancements */
+@media (max-width: 600px) {
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  select,
+  input[type="text"] {
+    width: 100%;
+  }
 }
